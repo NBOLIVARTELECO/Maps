@@ -56,6 +56,14 @@ class MainActivity : AppCompatActivity() {
             // Set custom info window adapter.
             googleMap.setInfoWindowAdapter(MarkerInfoWindowAdapter(this))
         }
+        mapFragment?.getMapAsync { googleMap ->
+            // Ensure all places are visible in the map.
+            googleMap.setOnMapLoadedCallback {
+                val bounds = LatLngBounds.builder()
+                places.forEach { bounds.include(it.latLng) }
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 20))
+            }
+        }
 
     }
     // [END maps_android_add_map_codelab_ktx_coroutines]
@@ -87,15 +95,15 @@ class MainActivity : AppCompatActivity() {
         }
 //
 //        // When the camera starts moving, change the alpha value of the marker to translucent
-//        googleMap.setOnCameraMoveStartedListener {
-//            clusterManager.markerCollection.markers.forEach { it.alpha = 0.3f }
-//            clusterManager.clusterMarkerCollection.markers.forEach { it.alpha = 0.3f }
-//        }
+        googleMap.setOnCameraMoveStartedListener {
+            clusterManager.markerCollection.markers.forEach { it.alpha = 0.3f }
+            clusterManager.clusterMarkerCollection.markers.forEach { it.alpha = 0.3f }
+        }
 //
         googleMap.setOnCameraIdleListener {
             // When the camera stops moving, change the alpha value back to opaque
-//            clusterManager.markerCollection.markers.forEach { it.alpha = 1.0f }
-//            clusterManager.clusterMarkerCollection.markers.forEach { it.alpha = 1.0f }
+            clusterManager.markerCollection.markers.forEach { it.alpha = 1.0f }
+            clusterManager.clusterMarkerCollection.markers.forEach { it.alpha = 1.0f }
 
             // Call clusterManager.onCameraIdle() when the camera stops moving so that re-clustering
             // can be performed when the camera stops moving
