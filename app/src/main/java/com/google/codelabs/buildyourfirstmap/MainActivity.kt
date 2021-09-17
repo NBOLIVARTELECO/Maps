@@ -46,7 +46,10 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
             mapFragment?.getMapAsync { googleMap ->
             addMarkers(googleMap)
-        }
+                googleMap.setInfoWindowAdapter(MarkerInfoWindowAdapter(this))
+
+            }
+
     }
     // [END maps_android_add_map_codelab_ktx_coroutines]
 
@@ -129,6 +132,7 @@ class MainActivity : AppCompatActivity() {
             }
             // Set place as the tag on the marker object so it can be referenced within
             // MarkerInfoWindowAdapter
+
             marker.tag = place
         }
     }

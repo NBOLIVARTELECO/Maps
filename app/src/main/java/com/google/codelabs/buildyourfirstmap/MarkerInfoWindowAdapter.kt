@@ -33,6 +33,7 @@ class MarkerInfoWindowAdapter(private val context: Context) : GoogleMap.InfoWind
         view.findViewById<TextView>(R.id.text_view_address).text = place.address
         view.findViewById<TextView>(R.id.text_view_rating).text = "Rating: %.2f".format(place.rating)
 
+
         return view
     }
 
