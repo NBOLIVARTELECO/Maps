@@ -49,6 +49,13 @@ class MainActivity : AppCompatActivity() {
                 googleMap.setInfoWindowAdapter(MarkerInfoWindowAdapter(this))
 
             }
+        mapFragment?.getMapAsync { googleMap ->
+            //addMarkers(googleMap)
+            addClusteredMarkers(googleMap)
+
+            // Set custom info window adapter.
+            googleMap.setInfoWindowAdapter(MarkerInfoWindowAdapter(this))
+        }
 
     }
     // [END maps_android_add_map_codelab_ktx_coroutines]
@@ -67,28 +74,28 @@ class MainActivity : AppCompatActivity() {
             )
 
         // Set custom info window adapter
-        clusterManager.markerCollection.setInfoWindowAdapter(MarkerInfoWindowAdapter(this))
+        //clusterManager.markerCollection.setInfoWindowAdapter(MarkerInfoWindowAdapter(this))
 
         // Add the places to the ClusterManager
         clusterManager.addItems(places)
         clusterManager.cluster()
 
-        // Show polygon
-        clusterManager.setOnClusterItemClickListener { item ->
-            addCircle(googleMap, item)
-            return@setOnClusterItemClickListener false
-        }
-
-        // When the camera starts moving, change the alpha value of the marker to translucent
-        googleMap.setOnCameraMoveStartedListener {
-            clusterManager.markerCollection.markers.forEach { it.alpha = 0.3f }
-            clusterManager.clusterMarkerCollection.markers.forEach { it.alpha = 0.3f }
-        }
-
+//        // Show polygon
+//        clusterManager.setOnClusterItemClickListener { item ->
+//            addCircle(googleMap, item)
+//            return@setOnClusterItemClickListener false
+//        }
+//
+//        // When the camera starts moving, change the alpha value of the marker to translucent
+//        googleMap.setOnCameraMoveStartedListener {
+//            clusterManager.markerCollection.markers.forEach { it.alpha = 0.3f }
+//            clusterManager.clusterMarkerCollection.markers.forEach { it.alpha = 0.3f }
+//        }
+//
         googleMap.setOnCameraIdleListener {
             // When the camera stops moving, change the alpha value back to opaque
-            clusterManager.markerCollection.markers.forEach { it.alpha = 1.0f }
-            clusterManager.clusterMarkerCollection.markers.forEach { it.alpha = 1.0f }
+//            clusterManager.markerCollection.markers.forEach { it.alpha = 1.0f }
+//            clusterManager.clusterMarkerCollection.markers.forEach { it.alpha = 1.0f }
 
             // Call clusterManager.onCameraIdle() when the camera stops moving so that re-clustering
             // can be performed when the camera stops moving
