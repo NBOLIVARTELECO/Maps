@@ -81,10 +81,10 @@ class MainActivity : AppCompatActivity() {
         clusterManager.cluster()
 
 //        // Show polygon
-//        clusterManager.setOnClusterItemClickListener { item ->
-//            addCircle(googleMap, item)
-//            return@setOnClusterItemClickListener false
-//        }
+        clusterManager.setOnClusterItemClickListener { item ->
+            addCircle(googleMap, item)
+            return@setOnClusterItemClickListener false
+        }
 //
 //        // When the camera starts moving, change the alpha value of the marker to translucent
 //        googleMap.setOnCameraMoveStartedListener {
@@ -113,7 +113,7 @@ class MainActivity : AppCompatActivity() {
         circle?.remove()
         circle = googleMap.addCircle {
             center(item.latLng)
-            radius(1000.0)
+            radius(2000.0)
             fillColor(ContextCompat.getColor(this@MainActivity, R.color.colorPrimaryTranslucent))
             strokeColor(ContextCompat.getColor(this@MainActivity, R.color.colorPrimary))
         }
