@@ -42,22 +42,22 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val mapFragment =
-            supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
-        lifecycleScope.launchWhenCreated {
-            // Get map
-            val googleMap = mapFragment.awaitMap()
-
-            addClusteredMarkers(googleMap)
-
-            // Wait for map to finish loading
-            googleMap.awaitMapLoad()
-
-            // Ensure all places are visible in the map
-            val bounds = LatLngBounds.builder()
-            places.forEach { bounds.include(it.latLng) }
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 20))
-        }
+//        val mapFragment =
+//            supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
+//        lifecycleScope.launchWhenCreated {
+//            // Get map
+//            val googleMap = mapFragment.awaitMap()
+//
+//            addClusteredMarkers(googleMap)
+//
+//            // Wait for map to finish loading
+//            googleMap.awaitMapLoad()
+//
+//            // Ensure all places are visible in the map
+//            val bounds = LatLngBounds.builder()
+//            places.forEach { bounds.include(it.latLng) }
+//            googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 20))
+//        }
     }
     // [END maps_android_add_map_codelab_ktx_coroutines]
 
